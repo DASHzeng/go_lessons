@@ -5,8 +5,8 @@ import (
 	"net/http"
 )
 
-func write(w http.ResponseWriter, req *http.Request) {
-	io.WriteString(w, "xxxxxx")
+func write(writer http.ResponseWriter, req *http.Request) {
+	io.WriteString(writer, "xxxxxx")
 }
 func StartServer(srv *http.Server) error {
 	http.HandleFunc("/test", write)
