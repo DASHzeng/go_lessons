@@ -14,7 +14,7 @@ func findRow(key string, tableName string) error {
 func TestFunction() error {
 	key := "1010"
 	tableName := "t_sys_user"
-	//业务逻辑中发生ErrNoRows错误，将操作信息包装到err上返回,其他错误或未出错则另做处理
+	//业务逻辑中发生ErrNoRows错误，将操作信息添加到err上返回,其他错误或未出错则另做处理
 	if err := findRow(key, tableName); err == sql.ErrNoRows {
 		return errors.Wrap(err, "target "+key+" not found in"+tableName)
 	} else {
