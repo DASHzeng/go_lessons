@@ -46,7 +46,7 @@ func main() {
 
 }
 func getRequest() {
-	//
+	totalLock.Lock()
 	if totalCount > 0 {
 		fal, _ := strconv.ParseFloat(fmt.Sprintf("%.4f", float64(totalFalse)/float64(totalCount)), 64)
 		if totalCount < limiter || fal < errLimiter {
@@ -56,6 +56,7 @@ func getRequest() {
 			}
 		}
 	}
+	totalLock.Unlock()
 	curCount = atomic.AddInt32(&curCount, 1)
 }
 func doSomeThing() (int, error) {
